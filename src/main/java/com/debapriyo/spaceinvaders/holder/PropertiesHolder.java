@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
@@ -31,6 +33,8 @@ public enum PropertiesHolder {
     // Defaults
     private static final String KNOWN_SPACE_INVADERS_LIST_PROPERTY_DEFAULT = "--o-----o--";
     private static final String RADAR_IMAGE_FILE_NAME_PROPERTY_DEFAULT = "radarImage.txt";
+
+    private Integer largestKnownSpaceInvaderLength = null;
 
     private final Logger LOG = LoggerFactory.getLogger(PropertiesHolder.class);
 
@@ -75,5 +79,16 @@ public enum PropertiesHolder {
      */
     public String getRadarImageFileName() {
         return this.properties.getProperty(RADAR_IMAGE_FILE_NAME_PROPERTY_KEY, RADAR_IMAGE_FILE_NAME_PROPERTY_DEFAULT);
+    }
+
+    /**
+     * @return the length of the largest known space invader
+     */
+    public int getLenghtOfBiggestKnownSpaceInvader() {
+        if (null == largestKnownSpaceInvaderLength) {
+            // Calculate first time
+            largestKnownSpaceInvaderLength = Collections.max(getKnownSpaceInvadersList(), Comparator.comparing(s -> s.length())).length();
+        }
+        return this.largestKnownSpaceInvaderLength;
     }
 }

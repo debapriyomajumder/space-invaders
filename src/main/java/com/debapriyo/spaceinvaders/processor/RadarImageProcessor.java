@@ -33,6 +33,7 @@ public enum RadarImageProcessor {
                 KnownSpaceInvadersHolder.INSTANCE //
                                 .getKnownSpaceInvaders() //
                                 .forEach(spaceInvader -> scanLineBeingProcessed.checkForSpaceInvader(spaceInvader));
+                scanLineBeingProcessed.flush();
             });
             // Log the results
             KnownSpaceInvadersHolder.INSTANCE //

@@ -36,4 +36,14 @@ public class PropertiesHolderTest {
         assertEquals("Radar Image file name", "radarImage.txt", PropertiesHolder.INSTANCE.getRadarImageFileName());
     }
 
+    /**
+     * Tests the getter for the length of largest known space invader
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void getLenghtOfBiggestKnownSpaceInvader() throws Exception {
+        assertEquals("Size of largest known space invader", 11, PropertiesHolder.INSTANCE.getLenghtOfBiggestKnownSpaceInvader());
+    }
+
 }
