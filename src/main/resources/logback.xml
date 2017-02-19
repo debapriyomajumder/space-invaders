@@ -2,7 +2,7 @@
 <configuration debug="false" scan="true" scanPeriod="1 hours">
 
     <property scope="context" name="LOG_DIRECTORY" value="logs"/>
-    <property scope="context" name="LOG_FILE" value="Tweets.log"/>
+    <property scope="context" name="LOG_FILE" value="spaceInvaders.log"/>
 
     <appender name="ROOT_CONSOLE_APPENDER" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -14,18 +14,18 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_DIRECTORY}/${LOG_FILE}.%d{yyyy-MM-dd}_%d{HHmmss}</fileNamePattern>
             <TimeBasedFileNamingAndTriggeringPolicy
-                    class="org.interview.twitter.logging.StartupTimeBasedTriggeringPolicy"/>
+                    class="com.debapriyo.spaceinvaders.logging.StartupTimeBasedTriggeringPolicy"/>
         </rollingPolicy>
         <encoder>
             <pattern>%msg%n</pattern>
         </encoder>
     </appender>
     <!-- The root logger -->
-    <root level="INFO">
+    <root level="DEBUG">
         <appender-ref ref="ROOT_CONSOLE_APPENDER"/>
     </root>
     <!--File appender-->
-    <logger level="INFO" name="org.interview.twitter.domain.TweetMessages">
+    <logger level="INFO" name="com.debapriyo.spaceinvaders.domain.SpaceInvader">
         <appender-ref ref="FILE_APPENDER"/>
     </logger>
 </configuration>

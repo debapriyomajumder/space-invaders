@@ -39,11 +39,12 @@ public class ScanLine {
      * @param spaceInvader the {@link SpaceInvader}
      */
     public void checkForSpaceInvader(final SpaceInvader spaceInvader) {
-        if (StringUtils.isNotBlank(scanLineStringBuilder.toString())) {
+        while (StringUtils.isNotBlank(scanLineStringBuilder.toString())) {
             while (scanLineStringBuilder.toString().startsWith(spaceInvader.getInvaderPattern())) {
-                spaceInvader.detected();
-                scanLineStringBuilder.delete(0, spaceInvader.getInvaderPattern().length());
+                spaceInvader.detected(); // Update space invader
+                scanLineStringBuilder.delete(0, spaceInvader.getInvaderPattern().length()); // Shift n pixels
             }
+            scanLineStringBuilder.delete(0, 1); // Shift one pixel
         }
     }
 }

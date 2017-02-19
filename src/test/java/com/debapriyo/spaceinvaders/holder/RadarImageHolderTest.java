@@ -1,6 +1,7 @@
 package com.debapriyo.spaceinvaders.holder;
 
-import org.junit.Before;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 /**
@@ -9,14 +10,9 @@ import org.junit.Test;
  * @since 2/19/2017
  */
 public class RadarImageHolderTest {
-    @Before
-    public void setUp() throws Exception {
-
-    }
-
     @Test
     public void getRadarImageScanLinesStream() throws Exception {
-
+        assertEquals("Number of lines in radar image file", 50, RadarImageHolder.INSTANCE.getRadarImageScanLinesStream().count());
     }
 
 }
