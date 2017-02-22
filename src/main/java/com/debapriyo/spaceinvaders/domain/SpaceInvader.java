@@ -1,5 +1,9 @@
 package com.debapriyo.spaceinvaders.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,45 +17,54 @@ import org.slf4j.LoggerFactory;
 public class SpaceInvader {
 
     private Logger LOG = LoggerFactory.getLogger(SpaceInvader.class);
-    private String invaderPattern;
-    private int numberOfTimesDetected;
+    private List<String> spaceInvaderMatrix;
+    private List<Match> matches;
 
-    /**
-     * Constructor
-     * 
-     * @param invaderPattern the space invader pattern
-     */
-    public SpaceInvader(final String invaderPattern) {
-        this.invaderPattern = invaderPattern;
-        this.numberOfTimesDetected = 0;
+    public SpaceInvader() {
+        this.spaceInvaderMatrix = new ArrayList<>();
+        this.matches = new ArrayList<>();
     }
 
-    /**
-     * @return the space invader pattern
-     */
-    public String getInvaderPattern() {
-        return invaderPattern;
+    public void addScanLineToSpaceInvaderMatrix(String matrixLine) {
+        this.spaceInvaderMatrix.add(matrixLine);
     }
 
-    /**
-     * Increments the occurrence count of this {@link SpaceInvader} by one.
-     */
-    public void detected() {
-        this.numberOfTimesDetected++;
+    public void addMatch(Match match) {
+        this.matches.add(match);
     }
 
-    /**
-     * Logs the detection status of this {@link SpaceInvader}
-     */
+    public boolean isDetected() {
+        return this.matches.size() > 0;
+    }
+
+    public int getSpaceInvaderImageHeight() {
+        return this.spaceInvaderMatrix.size();
+    }
+
+    public int getSpaceInvaderImageWidth() {
+        return Optional.ofNullable(this.spaceInvaderMatrix.get(0)) //
+                .map(String::length) //
+                .orElse(0);
+    }
+
+    public String getPixelAt(Coordinate coordinate) {
+        String pixelToReturn = "Y";
+        if (coordinate.getY() < getSpaceInvaderImageHeight() && coordinate.getX() < getSpaceInvaderImageWidth()) {
+            // requested coordinates in within the image raster
+            pixelToReturn = String.valueOf(this.spaceInvaderMatrix.get(coordinate.getY()).charAt(coordinate.getX()));
+        }
+        return pixelToReturn;
+    }
     public void log() {
         LOG.info(toString());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
-        return String.format("Space Invader of type \"%s\" detected %d times", this.invaderPattern, this.numberOfTimesDetected);
+        String invaderPattern = "";
+        for (String line : spaceInvaderMatrix) {
+            invaderPattern += line + "\n";
+        }
+        return "The following space invader has " + (isDetected() ? "" : "not ") + "been detected" + (isDetected() ? " at " + this.matches + "" : "") + ":\n" + invaderPattern + "\n\n";
     }
 }
