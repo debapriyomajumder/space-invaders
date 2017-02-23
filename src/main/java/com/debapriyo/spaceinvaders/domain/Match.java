@@ -3,7 +3,7 @@ package com.debapriyo.spaceinvaders.domain;
 /**
  * Domain representing a match of a {@link SpaceInvader} in the {@link RadarImage}.
  * 
- * @author Debapriyo Majumder (x086021)
+ * @author Debapriyo Majumder
  * @version 1.0
  * @since 2/22/2017
  */

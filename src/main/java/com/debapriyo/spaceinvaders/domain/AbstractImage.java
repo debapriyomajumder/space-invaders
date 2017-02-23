@@ -9,7 +9,7 @@ import org.apache.commons.collections.CollectionUtils;
 /**
  * Domain representing an abstraction of the {@link Image}.
  * 
- * @author Debapriyo Majumder (x086021)
+ * @author Debapriyo Majumder
  * @version 1.0
  * @since 2/23/2017
  */

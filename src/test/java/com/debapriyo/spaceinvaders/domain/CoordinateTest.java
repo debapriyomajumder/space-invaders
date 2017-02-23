@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * Unit test for {@link Coordinate}.
  * 
- * @author Debapriyo Majumder (x086021)
+ * @author Debapriyo Majumder
  * @version 1.0
  * @since 2/23/2017
  */

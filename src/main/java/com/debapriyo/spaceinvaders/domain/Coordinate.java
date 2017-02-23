@@ -3,7 +3,7 @@ package com.debapriyo.spaceinvaders.domain;
 /**
  * Domain representing a coordinate in any {@link Image}.
  * 
- * @author Debapriyo Majumder (x086021)
+ * @author Debapriyo Majumder
  * @version 1.0
  * @since 2/22/2017
  */

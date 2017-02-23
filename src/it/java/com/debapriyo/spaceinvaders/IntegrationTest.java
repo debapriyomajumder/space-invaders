@@ -12,7 +12,7 @@ import com.debapriyo.spaceinvaders.processor.RadarImageProcessor;
 /**
  * End to end Integration Test.
  * 
- * @author Debapriyo Majumder (x086021)
+ * @author Debapriyo Majumder
  * @version 1.0
  * @since 2/23/2017
  */

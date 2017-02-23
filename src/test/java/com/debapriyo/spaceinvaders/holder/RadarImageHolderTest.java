@@ -9,7 +9,7 @@ import com.debapriyo.spaceinvaders.domain.RadarImage;
 /**
  * Unit test for {@link RadarImageHolder}.
  * 
- * @author Debapriyo Majumder (x086021)
+ * @author Debapriyo Majumder
  * @version 1.0
  * @since 2/23/2017
  */

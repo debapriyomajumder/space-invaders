@@ -3,7 +3,7 @@ package com.debapriyo.spaceinvaders.domain;
 /**
  * Base interface for any kind or raster scan image
  * 
- * @author Debapriyo Majumder (x086021)
+ * @author Debapriyo Majumder
  * @version 1.0
  * @since 2/23/2017
  */
