@@ -25,13 +25,15 @@ public enum KnownSpaceInvadersHolder {
 
     INSTANCE;
 
-    private final List<SpaceInvader> KNOWN_SPACE_INVADERS = new ArrayList<>();
+    public static final String PATTERN_SEPARATOR = "~";
     private final Logger LOG = LoggerFactory.getLogger(KnownSpaceInvadersHolder.class);
+    private List<SpaceInvader> knownSpaceInvaders;
 
     /**
-     * Private constructor, loads the list of known {@link SpaceInvader}s
+     * Private constructor, loads the list of known {@link SpaceInvader}s from file
      */
     KnownSpaceInvadersHolder() {
+        knownSpaceInvaders = new ArrayList<>();
         String fileName = Optional.ofNullable(getClass().getClassLoader().getResource(PropertiesHolder.INSTANCE.getKnownSpaceInvadersImageFileName())) //
                         .map(URL::getFile) //
                         .orElse(null);
@@ -40,12 +42,12 @@ public enum KnownSpaceInvadersHolder {
         try {
             List<String> lines = Files.readAllLines(file.toPath());
             for (String line : lines) {
-                if (StringUtils.isBlank(line)) {
-                    KNOWN_SPACE_INVADERS.add(spaceInvader);
+                if (spaceInvader.getImageHeight() != 0 && StringUtils.isNotBlank(line) && line.contains(PATTERN_SEPARATOR)) {
+                    knownSpaceInvaders.add(spaceInvader);
                     spaceInvader = new SpaceInvader();
                 }
-                else {
-                    spaceInvader.addScanLineToSpaceInvaderMatrix(line);
+                else if (StringUtils.isNotBlank(line) && !line.contains(PATTERN_SEPARATOR)) {
+                    spaceInvader.addScanLineToImageMatrix(line);
                 }
             }
 
@@ -60,6 +62,6 @@ public enum KnownSpaceInvadersHolder {
      * @return the {@link List} of known {@link SpaceInvader}s
      */
     public List<SpaceInvader> getKnownSpaceInvaders() {
-        return this.KNOWN_SPACE_INVADERS;
+        return this.knownSpaceInvaders;
     }
 }

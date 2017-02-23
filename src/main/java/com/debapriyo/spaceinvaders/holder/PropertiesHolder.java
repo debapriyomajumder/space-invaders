@@ -25,18 +25,18 @@ public enum PropertiesHolder {
     // Keys
     private static final String KNOWN_SPACE_INVADERS_IMAGE_FILE_NAME_PROPERTY_KEY = "application.space.invaders.known.image.file";
     private static final String RADAR_IMAGE_FILE_NAME_PROPERTY_KEY = "application.space.invaders.radar.image.file";
-    private static final String RADAR_IMAGE_NOISE_LEVEL_PROPERTY_KEY = "application.space.invaders.radar.image.noise.level";
+    private static final String RADAR_IMAGE_NOISE_TOLERANCE_PERCENTAGE_PROPERTY_KEY = "application.space.invaders.radar.image.noise.tolerance.percentage";
     // Defaults
     private static final String KNOWN_SPACE_INVADERS_IMAGE_FILE_NAME_PROPERTY_DEFAULT = "knownSpaceInvaders.txt";
     private static final String RADAR_IMAGE_FILE_NAME_PROPERTY_DEFAULT = "radarImage.txt";
-    private static final String RADAR_IMAGE_NOISE_LEVEL_PROPERTY_DEFAULT = "1";
+    private static final String RADAR_IMAGE_NOISE_TOLERANCE_PERCENTAGE_PROPERTY_DEFAULT = "0";
 
     private final Logger LOG = LoggerFactory.getLogger(PropertiesHolder.class);
 
     private Properties properties;
 
     /**
-     * Private constructor, loads properties file
+     * Constructor, loads properties file
      */
     PropertiesHolder() {
         this.properties = new Properties();
@@ -62,17 +62,31 @@ public enum PropertiesHolder {
         }
     }
 
+    /**
+     * Returns name of the file holding the patterns for known space invaders
+     * 
+     * @return {@link String}
+     */
     public String getKnownSpaceInvadersImageFileName() {
         return this.properties.getProperty(KNOWN_SPACE_INVADERS_IMAGE_FILE_NAME_PROPERTY_KEY, KNOWN_SPACE_INVADERS_IMAGE_FILE_NAME_PROPERTY_DEFAULT);
     }
 
+    /**
+     * Returns name of the file holding the radar image
+     * 
+     * @return {@link String}
+     */
     public String getRadarImageFileName() {
         return this.properties.getProperty(RADAR_IMAGE_FILE_NAME_PROPERTY_KEY, RADAR_IMAGE_FILE_NAME_PROPERTY_DEFAULT);
     }
 
-    public int getRadarImageNoiseLevel() {
-        String noiseLevel = this.properties.getProperty(RADAR_IMAGE_NOISE_LEVEL_PROPERTY_KEY, RADAR_IMAGE_NOISE_LEVEL_PROPERTY_DEFAULT);
-        return NumberUtils.isNumber(noiseLevel) ? Integer.parseInt(noiseLevel) : Integer.parseInt(RADAR_IMAGE_NOISE_LEVEL_PROPERTY_DEFAULT);
+    /**
+     * Returns noise level tolerance in the radar image, in percentage
+     * 
+     * @return noise tolerance percentage
+     */
+    public int getRadarImageNoiseTolerancePercentage() {
+        String noiseLevel = this.properties.getProperty(RADAR_IMAGE_NOISE_TOLERANCE_PERCENTAGE_PROPERTY_KEY, RADAR_IMAGE_NOISE_TOLERANCE_PERCENTAGE_PROPERTY_DEFAULT);
+        return NumberUtils.isNumber(noiseLevel) ? Integer.parseInt(noiseLevel) : Integer.parseInt(RADAR_IMAGE_NOISE_TOLERANCE_PERCENTAGE_PROPERTY_DEFAULT);
     }
-
 }

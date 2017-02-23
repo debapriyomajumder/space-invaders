@@ -5,45 +5,23 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
- * Unit test for {@link PropertiesHolder}
+ * Unit test for {@link PropertiesHolder}.
  * 
- * @author Debapriyo Majumder
+ * @author Debapriyo Majumder (x086021)
  * @version 1.0
- * @since 2/19/2017
+ * @since 2/23/2017
  */
 public class PropertiesHolderTest {
 
     /**
-     * Tests the getter for the known space invaders list property
+     * Tests all the accessors
      * 
      * @throws Exception
      */
     @Test
-    public void getKnownSpaceInvadersList() throws Exception {
-        // assertEquals("Size of the list of known space invaders", 16, PropertiesHolder.INSTANCE.getKnownSpaceInvadersList().size());
-        // assertEquals("First element in the list of known space invaders", "--o-----o--", PropertiesHolder.INSTANCE.getKnownSpaceInvadersList().get(0));
-        // assertEquals("Last element in the list of known space invaders", "o-o--o-o", PropertiesHolder.INSTANCE.getKnownSpaceInvadersList().get(15));
-
+    public void testAccessors() throws Exception {
+        assertEquals("Getter for radar image file name property", "radarImage.txt", PropertiesHolder.INSTANCE.getRadarImageFileName());
+        assertEquals("Getter for known space invaders file name property", "knownSpaceInvaders.txt", PropertiesHolder.INSTANCE.getKnownSpaceInvadersImageFileName());
+        assertEquals("Getter for radar image noise tolerance percentage property", 0, PropertiesHolder.INSTANCE.getRadarImageNoiseTolerancePercentage());
     }
-
-    /**
-     * Tests the getter for the radar image file name property
-     * 
-     * @throws Exception
-     */
-    @Test
-    public void getRadarImageFileName() throws Exception {
-        assertEquals("Radar Image file name", "radarImage.txt", PropertiesHolder.INSTANCE.getRadarImageFileName());
-    }
-
-    /**
-     * Tests the getter for the length of largest known space invader
-     * 
-     * @throws Exception
-     */
-    @Test
-    public void getLenghtOfBiggestKnownSpaceInvader() throws Exception {
-        // assertEquals("Size of largest known space invader", 11, PropertiesHolder.INSTANCE.getLenghtOfBiggestKnownSpaceInvader());
-    }
-
 }
